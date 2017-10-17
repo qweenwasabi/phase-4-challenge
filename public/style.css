@@ -4,6 +4,10 @@ html, body {
   width: 100vw;
 }
 
+.vinyl-img {
+  height: 100%;
+  width: 60%;
+}
 #album-list {
   padding-left: 150px;
   padding-right: 150px;
