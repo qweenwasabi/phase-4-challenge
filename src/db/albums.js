@@ -1,5 +1,4 @@
-const connect = require('
-./connect')
+const connect = require('./connect')
 
 const getAll = () => {
   return connect.query('SELECT * FROM albums, []')

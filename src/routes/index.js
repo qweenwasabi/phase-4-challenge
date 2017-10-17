@@ -2,7 +2,7 @@ const router = require ('express').Router()
 
 const setLocals = (req, res, next) => {
   let loggedIn = false
-  let usernamne = NULL
+  let usernamne = null
   if (req.session.username){
     loggedIn = true
     username = req.session.username
@@ -12,6 +12,6 @@ const setLocals = (req, res, next) => {
 }
 
 router.use(setLocals)
-router.use('/', require('./noauth'))
+router.use('/', require('./notauthorized'))
 
 module.exports = router

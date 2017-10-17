@@ -1,0 +1,15 @@
+<div class ="navbar row-space-around">
+  <a href="/"><h1 class="logo navbar-content">Vinyl</h1></a>
+
+  <% if (loggedIn) { %>
+    <div class="row">
+      <a href="/profile/<%= username %> "><h3 class="navbar-content">Profile</h3></a>
+      <a href="/logout"><h3 class="navbar-content">Sign Out</h3></a>
+    </div>
+    <% } else { %>
+    <div class="row">
+      <a href="/signup"><h3 class="navbar-content">Sign Up!</h3></a>
+      <a href="/signin"><h3 class="navbar-content">Sign In</h3></a>
+    </div>
+  <% } %>
+</div>
