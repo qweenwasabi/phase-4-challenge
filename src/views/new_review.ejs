@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vinyl : New Review <%= album.title %></title>
+  <%- include ./partials/script_style.ejs %>
+</head>
+<body>
+
+  <h1 class="new-review-title"> New Review for <%= album.title %></h1>
+<br/>
+  <form class="add-review" action="/albums/<%=album.id%>/reviews/new" method="POST">
+    <textarea class="review-text" row="20" cols="40" name="form-content"></textarea>
+    <button type="submit" class="submit-button">SUBMIT</button>
+  </form>
+  <br />
+
+
+</body>
+</html>

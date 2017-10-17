@@ -2,14 +2,24 @@
 <html>
 <head>
   <title>Vinyl : <%= album.title %></title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
+  <%- include ./partials/script_style.ejs %>
 </head>
 <body>
-
+<div class="album-cover">
   <h1><%= album.title %></h1>
   <em>by <%= album.artist %></em>
+</div>
+<br/>
 
+<div id="album-list">
+  <h2 class="ablum-list-title col-md-12">REVIEWS</h2>
+
+  <form class="new-button" action="/albums/<%=album.id%>/reviews/new" method="GET">
+    <button type="submit">ADD NEW REVIEW</button>
+  </form>
+  <br />
+  
+</div>
   <h2>Reviews</h2>
 
   <!-- TODO: implement album reviews -->
