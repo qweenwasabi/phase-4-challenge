@@ -2,7 +2,7 @@ const albumsData = require('../db/albums.js')
 const moment = require('moment')
 const router = require('express').Router()
 
-router.get('/:id', (req, res) => {
+router.get('/:title', (req, res) => {
   const title = req.params.title
   albumsData.getReviews(title)
     .then((reviews) => {

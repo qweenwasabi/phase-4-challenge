@@ -14,7 +14,7 @@ const create = (user_id, album_id, content) => {
 const remove = (id) => {
   return connect.none('DELETE FROM reviews WHERE id = $1', [id])
     .catch((error) => {
-      .console.log('\nError in deleteReview query\n')
+      console.log('\nError in deleteReview query\n')
       throw error
     })
 }
@@ -28,6 +28,7 @@ const getById = (id) => {
   .catch((error) => {
     console.log('\nError in getById query\n')
     throw error
+  })
 }
 
 module.exports = {
