@@ -8,7 +8,7 @@ VALUES
 ;
 
 INSERT INTO
-  users (name, email, password)
+  users (username, email, password)
 VALUES
   ('Wallce Smith', 'Wsmith@yahoo.com', 'Wsmith'),
   ('Steven White', 'stevenW@yahoo.com', 'dogfish'),

@@ -1,8 +1,10 @@
 const router = require ('express').Router()
+const albumsData = require('../db/albums.js')
+
 
 const setLocals = (req, res, next) => {
   let loggedIn = false
-  let usernamne = null
+  let username = null
   if (req.session.username){
     loggedIn = true
     username = req.session.username
@@ -12,6 +14,14 @@ const setLocals = (req, res, next) => {
 }
 
 router.use(setLocals)
-router.use('/', require('./notauthorized'))
+
+router.get('/', (req, res) => {
+  albumsData.getAll()
+    .then((albums) => {
+      res.render('index', {albums})
+    })
+})
+
+router.use('/', require('./users'))
 
 module.exports = router
