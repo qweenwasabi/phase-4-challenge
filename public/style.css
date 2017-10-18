@@ -100,13 +100,11 @@ button {
 }
 
 .green-box {
-  border: 1px solid green;
   display: flex;
   flex-direction: row;
   margin-bottom: 1em;
 }
 
 .red-box {
-  border: 1px solid red;
   width: 92%
 }
