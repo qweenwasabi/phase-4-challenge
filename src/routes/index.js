@@ -1,15 +1,15 @@
-const crypt = require ('../utilities/bcrypt')
+const crypt = require('../utilities/bcrypt')
 const users = require('../db/users.js')
+const albums = require('../db/albums.js')
 const moment = require('moment')
-const router = require ('express').Router()
-const albumsData = require('../db/albums.js')
+const router = require('express').Router()
 
 const setLocals = (req, res, next) => {
   let loggedIn = false
   let username = null
-  if (req.session.username){
+  if (req.session.user) {
     loggedIn = true
-    username = req.session.username
+    username = req.session.user.username
   }
   res.locals = {loggedIn, username}
   next()
@@ -17,12 +17,27 @@ const setLocals = (req, res, next) => {
 
 router.use(setLocals)
 
-router.get('/', (req, res) => {
-  albumsData.getAll()
+const getAlbums = (req, res, next) => {
+  albums.getAll()
     .then((albums) => {
-      res.render('index', {albums})
+      req.albums = albums
+      next()
     })
-})
+}
+
+const getThreeReviews = (req, res, next) => {
+  albums.getRecentReviews()
+    .then((reviews) => {
+      req.reviews = reviews
+      next()
+    })
+}
+
+const renderIndex = (req, res) => {
+  res.render('index', {albums: req.albums, reviews: req.reviews, moment})
+}
+
+router.get('/', getAlbums, getThreeReviews, renderIndex)
 
 router.route('/signup')
   .get((req, res) => res.render('signup'))
@@ -30,9 +45,9 @@ router.route('/signup')
     const username = req.body.username
     crypt.encrypt(req.body.password)
       .then((password) => {
-        users.newUser(username, req.body.email, password)
-          .then(() => {
-            req.session.username = username
+        users.create(username, req.body.email, password)
+          .then((user) => {
+            req.session.user = {username, id:user.id}
             req.session.save(res.redirect(`/users/${username}`))
           })
       })
@@ -43,12 +58,12 @@ router.route('/signin')
   .get((req, res) => res.render('signin'))
   .post((req, res) => {
     const username = req.body.username
-    users.findByName(username)
+    users.getByUsername(username)
       .then((user) => {
-        crypt.compare(req.body.password, user.password)
+        crypt.comparePasswords(req.body.password, user.password)
           .then((boolean) => {
             if (boolean) {
-              req.session.username = username
+              req.session.user = {username, id: user.id}
               req.session.save(res.redirect(`/users/${username}`))
             } else res.redirect('/signin')
           })
@@ -62,5 +77,16 @@ router.get('/logout', (req, res) => {
 
 router.use('/users', require('./users'))
 router.use('/albums', require('./albums'))
+
+const ensureLoggedIn = (req, res, next) => {
+  if (req.session && req.session.user) {
+    next()
+  } else {
+    res.redirect('/signin')
+  }
+}
+
+router.use(ensureLoggedIn)
+router.use('/albums', require('./reviews'))
 
 module.exports = router

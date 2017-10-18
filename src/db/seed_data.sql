@@ -17,7 +17,7 @@ VALUES
 ;
 
 INSERT INTO
-  reviews (content, author, album)
+  reviews (content, user_id, album_id)
 VALUES
   ('I am old and weak this album makes me feel strong I want to become Thom Yorke, a restraining order wont stop me, I will become him ', 1, 4),
   ('she is so much better than her know it all sister you can hear the pain in her voice for acceptance, socity are like sheep and Solange a sheep wrangler', 2, 2),

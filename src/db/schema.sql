@@ -14,8 +14,10 @@ CREATE TABLE users (
 
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
+  user_id INT,
+  album_id INT,
   content TEXT,
-  author INT REFERENCES users(id),
-  album INT REFERENCES albums(id),
-  created_at TIMESTAMP DEFAULT current_timestamp
+  created_at TIMESTAMP DEFAULT current_timestamp,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (album_id) REFERENCES albums(id)
 );
