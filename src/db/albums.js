@@ -16,7 +16,22 @@ const getById = (id) => {
     })
 }
 
+const getReviews = (title) => {
+  return connect.query(`
+    SELECT reviews.id, content, created_at, title, artist, username
+    FROM reviews
+    RIGHT OUTER JOIN albums ON albums.id = reviews.album
+    LEFT OUTER JOIN users ON users.id = reviews.author
+    WHERE albums.title = $1
+    ORDER BY id DESC`,
+    [title])
+    .catch((error) => {
+      console.log('\nError in getReviews query\n')
+      throw error
+    })
+}
 module.exports = {
   getAll,
-  getById
+  getById,
+  getReviews
 }

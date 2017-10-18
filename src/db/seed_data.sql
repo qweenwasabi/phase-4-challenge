@@ -10,7 +10,7 @@ VALUES
 INSERT INTO
   users (username, email, password)
 VALUES
-  ('Wallce Smith', 'Wsmith@yahoo.com', 'Wsmith'),
+  ('Wallace Smith', 'Wsmith@yahoo.com', 'Wsmith'),
   ('Steven White', 'stevenW@yahoo.com', 'dogfish'),
   ('Raquel Johnson', 'Johnson2008@gmail.com', 'rocky55'),
   ('Aldrich Linton', 'Linton@aol.com', 'lostintime')

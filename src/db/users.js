@@ -23,7 +23,23 @@ const findByName = (username) => {
     })
 }
 
+const getReviews = (username) => {
+  return connect.query(`
+    SELECT reviews.id, content, created_at, title, artist, username, email, joined_at
+    FROM reviews
+    LEFT OUTER JOIN albums ON albums.id = reviews.album
+    RIGHT OUTER JOIN users ON users.id = reviews.author
+    WHERE users.username = $1
+    ORDER BY id DESC`,
+    [username])
+    .catch((error) => {
+      console.log('\nError in getReviews query\n')
+      throw error
+    })
+}
+
 module.exports = {
   newUser,
-  findByName
+  findByName,
+  getReviews
 }
