@@ -1,0 +1,112 @@
+html, body {
+  font-family: 'Helvetica', cursive;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+h1, h2, h3, input {
+  font-family: 'Lato', sans-serif;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+a:hover {
+  color:#A0522D;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+button {
+  background-color: brown;
+  border: 6px outset brown;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+.album-list {
+  align-self: flex-start;
+}
+
+.body-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.logo {
+  font-size:3em;
+}
+
+.input {
+  border: 3px inset brown;
+  border-radius: 5px;
+  padding: .5em;
+  width: 100%;
+}
+
+.navbar {
+  background-color: brown;
+  border-bottom: 3px solid #222;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 1em 0 1em;
+  width: 100%;
+}
+
+.navbar-content {
+  color: #222;
+  margin: 0 3em 0 3em;
+}
+
+.new-button{
+  background-color: grey;
+  border: 3px outset grey;
+  border-radius: 6px;
+}
+
+.post-column {
+  width: 30%
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-space-around {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.row-space-between {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.trash {
+  height: 2em;
+  margin: .5em 0 0 .2em;
+}
+
+.trash:hover {
+  cursor:pointer;
+}
+
+.green-box {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+}
+
+.red-box {
+  border: 1px solid red;
+  width: 92%
+}

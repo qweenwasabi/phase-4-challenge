@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Vinyl</title>
-  <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
-</head>
-<body>
+<%- include partials/header.ejs %>
 
   <h1>Vinyl</h1>
 
@@ -20,5 +13,45 @@
     <% }) %>
   </div>
 
-</body>
-</html>
+<%- include partials/footer.ejs %>
+
+
+<%- include partials/header.ejs %>
+<div class="index">
+
+  <img class='vinyl-background' src='' style="width:102%"/>
+  <div class="row-space-around">
+    <div class="album-list">
+      <h2>Records</h2>
+      <% albums.forEach( album => { %>
+        <div>
+          <h3><a href="/albums/<%= album.title %>"><%= album.title %></a></h3>
+          <span><%= album.artist %></span>
+        </div>
+      <% }) %>
+    </div>
+
+    <div class='post-column'>
+      <h2>Recent Reviews</h2>
+      <% if (reviews[0].title) {
+        reviews.forEach( review => { %>
+          <div class='box blue-box'>
+            <div class="red-box">
+              <div class="row-space-between">
+                <h3> <a href="/albums/<%= review.title%>" > <%= review.title %> </a> </h3>
+                <p> <%= moment(review.created_at).format('MMM-DD-YY') %> </p>
+              </div>
+              <p> <%= review.content %> </p>
+              <p> by <a href="/profile/<%= review.username%>" > <%= review.username %> </a> </p>
+            </div>
+          </div>
+        <% })
+      } else { %>
+        <p class='box green-box'> There are 0 reviews </p>
+      <% } %>
+    </div>
+  </div>
+
+</div>
+
+<%- include partials/footer.ejs %>

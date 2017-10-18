@@ -1,37 +1,35 @@
-<title>Vinyl : <%= reviews[0].title %></title>
+<title>Vinyl: <%= reviews[0].username %></title>
 
 <%- include partials/header.ejs %>
 
+  <img class='profile-pic' src='<%= reviews[0].picture %>'/>
+
+  <div class='user-column'>
+    <h2><%= reviews[0].username %></h2>
+    <p>Email: <%= reviews[0].email %></p>
+    <p>Join Date: <%= moment(reviews[0].joined_at).format('MMM-DD-YY') %></p>
+  </div>
 
   <div class='post-column'>
-    <h1><%= reviews[0].title %></h1>
-    <em>by <%= reviews[0].artist %></em>
-
-    <div class="row-space-between">
-      <h2>Reviews</h2>
-      <% if (loggedIn) { %>
-      <a href="/albums/<%= reviews[0].title %>/reviews/new" class="new-review-button"> Add Review </a>
-      <% } %>
-    </div>
-
-    <% if (reviews[0].id) {
+    <h2>Reviews</h2>
+    <% if (reviews[0].title) {
       reviews.forEach( review => { %>
         <div class="box green-box">
           <div class="red-box">
             <div class="row-space-between">
-              <h3> <a href="/albums/<%= review.id%>" > <%= review.id %> </a> </h3>
+              <h3> <a href="/albums/<%= review.title%>" > <%= review.title %> </a> </h3>
               <p> <%= moment(review.created_at).format('MMM-DD-YY') %> </p>
             </div>
             <p> <%= review.content %> </p>
             <p> by <a href="/users/<%= review.username%>" > <%= review.username %> </a> </p>
           </div>
-          <% if (reviews[0].username === username) { %>
+          <% if (review.username === username) { %>
             <img id="<%= review.id%>" src="/trashcan.png" alt="trashcan" class="trashcan">
           <% } %>
         </div>
       <% })
     } else { %>
-      <p class='box green-box'> This album has ZERO reviews </p>
+      <p class='box blue-box'> This user has no reviews </p>
     <% } %>
   </div>
 
