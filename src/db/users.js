@@ -12,18 +12,18 @@ const newUser = (username, email, password) => {
     })
 }
 
-const findName = (username) => {
+const findByName = (username) => {
   return connect.one(`
     SELECT * FROM users
     WHERE username = $1`,
     [username])
     .catch((error) => {
-      console.log('\nError in findName query\n')
+      console.log('\nError in findByName query\n')
       throw error
     })
 }
 
 module.exports = {
   newUser,
-  findName
+  findByName
 }

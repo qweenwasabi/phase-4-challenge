@@ -22,7 +22,7 @@ router.route('/signin')
   .get((req, res) => res.render ('signin'))
   .post((req, res) => {
     const username = req.body.username
-    usersData.findName(username)
+    usersData.findById(username)
     .then((user) => {
       crypt.compare(req.body.password, user.password)
         .then((boolean) => {
