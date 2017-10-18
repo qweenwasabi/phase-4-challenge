@@ -1,11 +1,11 @@
 const crypt = require('../utilities/bcrypt')
-const usersData = require('../db/users.js')
+const reviews = require('../db/reviews')
 const moment = require ('moment')
 const router = require ('express').Router()
 
   router.get('/:username', (req, res) => {
     const username = req.params.username
-    usersData.getReviews(username)
+    reviews.getByUsername(username)
       .then((reviews) => {
           res.render('profile', {reviews, moment})
       })

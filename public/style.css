@@ -1,5 +1,5 @@
 html, body {
-  font-family: 'Helvetica', cursive;
+  font-family: 'Helvetica', sans-serif;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -100,13 +100,11 @@ button {
 }
 
 .green-box {
-  border: 1px solid green;
   display: flex;
   flex-direction: row;
   margin-bottom: 1em;
 }
 
 .red-box {
-  border: 1px solid red;
   width: 92%
 }

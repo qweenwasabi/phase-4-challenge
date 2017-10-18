@@ -8,10 +8,10 @@ const getAll = () => {
     })
 }
 
-const getById = (id) => {
-  return connect.one('SELECT * FROM albums WHERE id = $1', [id])
+const getByTitle = (title) => {
+  return connect.one('SELECT * FROM albums WHERE title = $1', [title])
     .catch((error) => {
-      console.log('\nError in getById query\n')
+      console.log('\nError in getByTitle query\n')
       throw error
     })
 }
@@ -31,7 +31,7 @@ const getReviews = (title) => {
     })
 }
 
-const getRecentReviews = () => {
+const getThreeReviews = () => {
   return connect.query(`
     SELECT reviews.id, content, created_at, title, artist, username
     FROM reviews
@@ -41,14 +41,14 @@ const getRecentReviews = () => {
     LIMIT 3`,
     [])
     .catch((error) => {
-      console.log('\nError in getRecentReviews query\n')
+      console.log('\nError in getThreeReviews query\n')
       throw error
     })
 }
 
 module.exports = {
   getAll,
-  getById,
+  getByTitle,
   getReviews,
-  getRecentReviews
+  getThreeReviews
 }

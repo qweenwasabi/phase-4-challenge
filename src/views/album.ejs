@@ -3,6 +3,7 @@
 <%- include partials/header.ejs %>
 
 
+
   <div class='post-column'>
     <h1><%= reviews[0].title %></h1>
     <em>by <%= reviews[0].artist %></em>
@@ -14,18 +15,18 @@
       <% } %>
     </div>
 
-    <% if (reviews[0].id) {
+    <% if (reviews[0].title) {
       reviews.forEach( review => { %>
         <div class="box green-box">
           <div class="red-box">
             <div class="row-space-between">
-              <h3> <a href="/albums/<%= review.id%>" > <%= review.id %> </a> </h3>
+              <h3> <a href="/albums/<%= review.title%>" > <%= review.title %> </a> </h3>
               <p> <%= moment(review.created_at).format('MMM-DD-YY') %> </p>
             </div>
             <p> <%= review.content %> </p>
             <p> by <a href="/users/<%= review.username%>" > <%= review.username %> </a> </p>
           </div>
-          <% if (reviews[0].username === username) { %>
+          <% if (review.username === username) { %>
             <img id="<%= review.id%>" src="/trashcan.png" alt="trashcan" class="trashcan">
           <% } %>
         </div>

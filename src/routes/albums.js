@@ -1,10 +1,10 @@
-const albumsData = require('../db/albums.js')
+const albums = require('../db/reviews')
 const moment = require('moment')
 const router = require('express').Router()
 
 router.get('/:title', (req, res) => {
   const title = req.params.title
-  albumsData.getReviews(title)
+  albums.getByTitle(title)
     .then((reviews) => {
       res.render('album', {reviews, moment})
     })
